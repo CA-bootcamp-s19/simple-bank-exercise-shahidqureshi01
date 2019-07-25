@@ -95,6 +95,11 @@ contract SimpleBank {
            Subtract the amount from the sender's balance, and try to send that amount of ether
            to the user attempting to withdraw. 
            return the user's balance.*/
+        if(withdrawAmount <= balances[msg.sender]) {
+            balances[msg.sender] -= withdrawAmount;
+            msg.sender.send(withdrawAmount);
+        }
+        return balances[msg.sender];
     }
 
 }
